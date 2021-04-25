@@ -8,9 +8,6 @@ GAMEOVER = 0
 BOARD = np.zeros((HEIGHT,WIDTH))
 
 #Functions
-def valid_col(BOARD,col):
-    return BOARD[HEIGHT-1][col] == 0
-
 def empty_row(BOARD,col):
     for i in range(HEIGHT):
         if BOARD[i][col] == 0:
@@ -18,9 +15,6 @@ def empty_row(BOARD,col):
 
 def insert_jeton(BOARD,row,col,player):
     BOARD[row][col] = player
-
-def print_flip(BOARD):
-    print(np.flip(BOARD, 0))
 
 def win(BOARD,player):
     #Horizontal
@@ -46,18 +40,17 @@ def win(BOARD,player):
     return 0
 
 #Loop
-
 while GAMEOVER == 0: 
     if TURN == 1:
         col = int(input("Player1:"))
-        if valid_col(BOARD,col):
+        if BOARD[HEIGHT-1][col] == 0:
             insert_jeton(BOARD,empty_row(BOARD,col),col,1)
             GAMEOVER =  win(BOARD,1)
         TURN += 1
     else:
         col = int(input("Player2:"))
-        if valid_col(BOARD,col):
+        if BOARD[HEIGHT-1][col] == 0:
             insert_jeton(BOARD,empty_row(BOARD,col),col,2)
             GAMEOVER =  win(BOARD,2)
         TURN -= 1
-    print_flip(BOARD)
+    print(np.flip(BOARD, 0)) 
