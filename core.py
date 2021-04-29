@@ -55,4 +55,10 @@ async def on_message(message):
             games[id_game].move(move_column)
             await message.channel.send(f'{games[id_game].player1}, you\'re next to move!')
 
+    if message.content.startswith('$help'):
+    	await message.channel.send("I'm here to help you! How to use me:\nType `$start <tag someone>` to begin a game. Keep a note of the game ID!\nType `$move <game id> <column>` to make a move in one of your current games.")	
+
+    if message.content.startswith('$py101'):
+    	await message.channel.send("Why do Python programmers have low self esteem?\n.\n.\n.\nThey're constantly comparing their self to other.")
+
 client.run(os.getenv('TOKEN'))
