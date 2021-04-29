@@ -1,5 +1,5 @@
 import numpy as np
-import winner_render
+from render import Render
 
 #Variable
 WIDTH = 7
@@ -7,10 +7,10 @@ HEIGHT = 6
 TURN = 1
 GAMEOVER = 0
 class Logic:
+    def __init__(self):
+        self.board = np.zeros((HEIGHT,WIDTH))
 
-    board = np.zeros((HEIGHT,WIDTH))
-
-#Functions
+    #Functions
     def empty_row(self,col):
         for i in range(HEIGHT):
             if self.board[i][col] == 0:
@@ -23,22 +23,22 @@ class Logic:
         #Horizontal
         for i in range(WIDTH - 3):
             for j in range(HEIGHT):
-                if self.board[j][i] == player and self.board[j][i+1] == player and self.board[j][i+2] and self.board[j][i+3] == player:
+                if self.board[j][i] == player and self.board[j][i+1] == player and self.board[j][i+2] == player and self.board[j][i+3] == player:
                     return 1
         #Vertical
         for i in range(WIDTH):
             for j in range(HEIGHT - 3):
-                if self.board[j][i] == player and self.board[j+1][i] == player and self.board[j+2][i] and self.board[j+3][i] == player:
+                if self.board[j][i] == player and self.board[j+1][i] == player and self.board[j+2][i] == player and self.board[j+3][i] == player:
                     return 1
         #Diagonal +
         for i in range(WIDTH - 3):
             for j in range(HEIGHT - 3):
-                if self.board[j][i] == player and self.board[j+1][i+1] == player and self.board[j+2][i+2] and self.board[j+3][i+3] == player:
+                if self.board[j][i] == player and self.board[j+1][i+1] == player and self.board[j+2][i+2] == player and self.board[j+3][i+3] == player:
                     return 1
         #Diagonal -
         for i in range(WIDTH - 3):
             for j in range(3,HEIGHT):
-                if self.board[j][i] == player and self.board[j-1][i+1] == player and self.board[j-2][i+2] and self.board[j-3][i+3] == player:
+                if self.board[j][i] == player and self.board[j-1][i+1] == player and self.board[j-2][i+2] == player and self.board[j-3][i+3] == player:
                     return 1
         return 0
 
