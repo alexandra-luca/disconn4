@@ -5,6 +5,7 @@ class Render:
     player2_path = 'res/player2.png'
     winner1_path = 'res/winner1.png'
     winner2_path = 'res/winner2.png'
+    draw_path = 'res/draw.png'
     board_path = 'res/bg.png'
         
     def __init__(self):
@@ -12,13 +13,14 @@ class Render:
         self.player2_image = Image.open(Render.player2_path)
         self.winner1_image = Image.open(Render.winner1_path)
         self.winner2_image = Image.open(Render.winner2_path)
+        self.draw_image = Image.open(Render.draw_path)
         self.board_image = Image.open(Render.board_path)
     
     def __line_pixel_transform(self, line):
         return line * 100 + 15
 
     def __coll_pixel_transform(self, coll):
-        return coll * 100 + 10
+        return coll * 100 + 60
 
     def render_matrix(self, matrix, winner = 0):
         '''
@@ -45,6 +47,8 @@ class Render:
             bg.paste(self.winner1_image.copy(), (0, 0), self.winner1_image)
         elif winner == 2:
             bg.paste(self.winner2_image.copy(), (0, 0), self.winner2_image)
+        elif winner == -1:
+            bg.paste(self.draw_image.copy(), (0, 0), self.draw_image)
 
         return bg
 
@@ -64,3 +68,4 @@ if __name__ == "__main__":
     r.render_matrix(matrix).show()
     r.render_matrix(matrix, 1).show()
     r.render_matrix(matrix, 2).show()
+    r.render_matrix(matrix, -1).show()
