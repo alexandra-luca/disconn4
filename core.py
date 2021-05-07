@@ -27,6 +27,8 @@ class Game():
 
         self.logic.insert_jeton(self.logic.empty_row(column), column, self.next_to_move)
 
+        if (self.logic.isDraw()):
+            return (r.render_matrix(np.flip(self.logic.board, 0), -1), -1)
         if (self.logic.win(self.next_to_move)):
             self.won = True
             return (r.render_matrix(np.flip(self.logic.board, 0), self.next_to_move), self.next_to_move)
@@ -76,7 +78,10 @@ async def on_message(message):
             image.save("./image.png")
 
             tag_player = games[id_game].player1 if games[id_game].next_to_move == 1 else games[id_game].player2
-            if winner == 0:
+            
+            if winner == -1:
+                await message.channel.send(f'It\'s a draw!', file=discord.File('image.png'))
+            elif winner == 0:
                 await message.channel.send(f'{tag_player}, you\'re next to move in game {id_game}!', file=discord.File('image.png'))
             else:
                 await message.channel.send(f'{tag_player}, you\'ve won game {id_game}! Congrats!', file=discord.File('image.png'))

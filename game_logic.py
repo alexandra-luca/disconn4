@@ -44,6 +44,11 @@ class Logic:
                     return 1
         return 0
 
+    def isDraw(self):
+        if GAMEOVER == False and 0 not in self.board[-1]:
+            # winner = (r.render_matrix(np.flip(self.board,0),-1),TURN)
+            return True
+
     def game(self,GAMEOVER,TURN):
         while GAMEOVER == False: 
             if TURN == 1:
