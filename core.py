@@ -1,7 +1,6 @@
 import discord
 import os
-import sys
-from final_logic import Logic
+from game_logic import Logic
 from render import Render
 import numpy as np
 
@@ -30,13 +29,13 @@ class Game():
 
         if (self.logic.win(self.next_to_move)):
             self.won = True
-            return (r.render_matrix(np.flip(self.logic.board,0), self.next_to_move), self.next_to_move)
+            return (r.render_matrix(np.flip(self.logic.board, 0), self.next_to_move), self.next_to_move)
         else:
             if self.next_to_move == 1:
                 self.next_to_move = 2
             else:
                 self.next_to_move = 1
-            return (r.render_matrix(np.flip(self.logic.board,0)), 0)
+            return (r.render_matrix(np.flip(self.logic.board, 0)), 0)
 
 
 @client.event
