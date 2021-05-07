@@ -65,7 +65,7 @@ class Logic:
                 TURN += 1
 
                 r = render.Render()
-                r.render_matrix(np.flip(self.board,0)).show()
+                r.render_matrix(np.flip(self.board,0))#.show()
             else:
                 col = int(input("Player2:"))
                 if self.board[-1][col] == 0:
@@ -84,16 +84,9 @@ class Logic:
                 TURN -= 1 
             
                 r =render.Render()
-                r.render_matrix(np.flip(self.board,0)).show()
+                r.render_matrix(np.flip(self.board,0))#.show()
 
 if __name__ == "__main__":
     gamer = Logic()
-    gamer.board = [
-        [2, 1, 2, 1, 2, 1, 2], 
-        [1, 2, 1, 1, 2, 2, 1], 
-        [1, 1, 2, 2, 1, 1, 2], 
-        [2, 2, 2, 1, 2, 2, 2], 
-        [2, 1, 1, 2, 1, 1, 1], 
-        [1, 2, 2, 1, 1, 2, 1]
-    ] 
     congrats = gamer.game(GAMEOVER,TURN)
+    # congrats[0].show()
