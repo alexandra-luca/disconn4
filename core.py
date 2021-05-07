@@ -1,5 +1,6 @@
 import discord
 import os
+import sys
 from final_logic import Logic
 from render import Render
 import numpy as np
@@ -84,9 +85,17 @@ async def on_message(message):
             os.remove("./image.png")
 
     if message.content.startswith('$help'):
-        await message.channel.send("I'm here to help you! How to use me:\nType `$start <tag someone>` to begin a game. Keep a note of the game ID!\nType `$move <game id> <column>` to make a move in one of your current games.")  
+        await message.channel.send("I'm here to help you! How to use me:\nType `$start <tag someone>` to begin a game. Keep a note of the game ID!\nType `$move <game id> <column>` to make a move in one of your current games.\nType `$stop <game id>` to end a game.")  
 
     if message.content.startswith('$py101'):
         await message.channel.send("Why do Python programmers have low self esteem?\n.\n.\n.\nThey're constantly comparing their self to other.")
+
+    if message.content.startswith('$stop'):
+        id_game = int(message.content.split(" ")[1])
+
+        tag_player = games[id_game].player1 if message.author.mention == games[id_game].player2 else games[id_game].player2
+        await message.channel.send(f'{tag_player}, you\'ve won game {id_game} by surrender!')
+
+        sys.exit()
 
 client.run(os.getenv('TOKEN'))
