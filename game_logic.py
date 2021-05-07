@@ -1,5 +1,6 @@
 import numpy as np
-import winner_render
+import render
+
 
 #Variable
 WIDTH = 7
@@ -28,7 +29,8 @@ class Logic:
         #Vertical
         for i in range(WIDTH):
             for j in range(HEIGHT - 3):
-                if self.board[j][i] == player and self.board[j+1][i] == player and self.board[j+2][i]  == player and self.board[j+3][i] == player:
+                if self.board[j][i] == player and self.board[j+1][i] == player and self.board[j+2][i] == player and self.board[j+3][i] == player:
+
                     return 1
         #Diagonal +
         for i in range(WIDTH - 3):
