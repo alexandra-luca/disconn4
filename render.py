@@ -17,10 +17,10 @@ class Render:
         self.board_image = Image.open(Render.board_path)
     
     def __line_pixel_transform(self, line):
-        return line * 100 + 15
+        return line * 100 + 14
 
     def __coll_pixel_transform(self, coll):
-        return coll * 100 + 60
+        return coll * 100 + 61
 
     def render_matrix(self, matrix, winner = 0):
         '''
