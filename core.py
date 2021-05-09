@@ -9,6 +9,7 @@ client = discord.Client()
 games = []
 r = Render()
 
+
 class Game():
     def __init__(self, player1, player2, id_game):
         self.player1 = player1
@@ -20,7 +21,7 @@ class Game():
         self.next_to_move = 1
 
     def get_image(self):
-        return r.render_matrix(np.flip(self.logic.board,0))
+        return r.render_matrix(np.flip(self.logic.board, 0))
 
     def move(self, column):
         print(f'Moved in column ${column}')
@@ -28,6 +29,7 @@ class Game():
         self.logic.insert_jeton(self.logic.empty_row(column), column, self.next_to_move)
 
         if (self.logic.isDraw()):
+            self.won = True
             return (r.render_matrix(np.flip(self.logic.board, 0), -1), -1)
         if (self.logic.win(self.next_to_move)):
             self.won = True
