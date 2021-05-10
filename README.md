@@ -1,4 +1,4 @@
-# Disconn4
+# DisConn4
 
 ![](game-screenshot.png)
 
