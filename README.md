@@ -1,6 +1,6 @@
 # DisConn4
 
-![](game-screenshot.png)
+![](screenshot-game.png)
 
 ### Description
 A Discord bot to play Connect 4
